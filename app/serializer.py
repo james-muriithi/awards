@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import News, Project, Rating, User
+from .models import Project, Rating, User
 
 
 class UserSerializer(serializers.ModelSerializer):

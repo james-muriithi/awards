@@ -27,6 +27,10 @@ class User(AbstractUser):
             setattr(self, key, value)
         self.save()
 
+    @classmethod
+    def get_all_users(cls):
+        return cls.objects.all()
+
 
 # project models
 class Project(models.Model):
