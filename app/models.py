@@ -12,3 +12,11 @@ class User(AbstractUser):
     bio = models.TextField(max_length=500, blank=True, null=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'full_name']
+
+    @property
+    def url_formatted_name(self):
+        return self.full_name.replace(' ', '+') or self.username
+
+    @property
+    def user_avatar(self):
+        return self.avatar if self.avatar else f'https://ui-avatars.com/api/?name={self.url_formatted_name}&background=49c5b6&color=fff'
