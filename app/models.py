@@ -30,7 +30,8 @@ class User(AbstractUser):
 
 # project models
 class Project(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='projects')
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='projects')
     title = models.CharField(max_length=250)
     slug = models.SlugField(null=True, unique=True)
     description = models.TextField()
@@ -74,3 +75,30 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+
+# rating models
+class Rating(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="ratings")
+    project = models.ForeignKey(
+        Project, on_delete=models.CASCADE, related_name='project')
+    design_rate = models.IntegerField(default=0)
+    usability_rate = models.IntegerField(default=0)
+    content_rate = models.IntegerField(default=0)
+    date = models.DateTimeField(auto_now_add=True, null=True)
+
+    @property
+    def avg_rate(self):
+        return (self.design_rate + self.usability_rate + self.content_rate) / 3
+
+    def save_rating(self):
+        self.save()
+
+    @classmethod
+    def filter_by_id(cls, id):
+        rating = Rating.objects.filter(id=id).first()
+        return rating
+
+    def __str__(self):
+        return self.user.username
