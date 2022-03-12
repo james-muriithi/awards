@@ -1,0 +1,51 @@
+{% load static %}
+<!-- banner -->
+<section id="home" class="h-100">
+    <div class="h-100 position-relative">
+        <img src="{% static '/images/bg.png' %}" alt="" class="h-100 w-100" style="object-fit: cover;">
+        <div class="position-absolute container-fluid py-3 h-100 w-100 overlay d-flex flex-column text-gray">
+            <div class="col d-flex justify-content-between">
+                <p>
+                    <span class="fw-bold">Site of the day</span> March 11, 2022
+                </p>
+                <div>
+                    <span class="material-icons img-40 center rounded-circle border border-1 border-white">share</span>
+                </div>
+            </div>
+            <div class="col text-center">
+                <h1 class="title">The Nifty Portal</h1>
+                <p class="p">
+                    By <a href="#">Vaan</a> from unitted states with 7.0
+                </p>
+                <div class="rating-group center mt-4">
+                    <div class="rating">
+                        <div class="rating-circle border border-3 border-primary rounded-circle center mx-2">
+                            7.9
+                        </div>
+                        Design
+                    </div>
+                    <div class="rating">
+                        <div class="rating-circle border border-3 border-warning rounded-circle center mx-2">
+                            7.9
+                        </div>
+                        Usability
+                    </div>
+                    <div class="rating">
+                        <div class="rating-circle border border-3 border-blue rounded-circle center mx-2">
+                            7.9
+                        </div>
+                        Creativity
+                    </div>
+                </div>
+            </div>
+            <div class="col position-relative mb-3">
+                <div class="position-absolute bottom-0">
+                    <button class="btn btn-outline-light rounded-pill text-uppercase text-xs center px-3">
+                        Visit site
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end banner -->
