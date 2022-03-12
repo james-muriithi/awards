@@ -1,5 +1,5 @@
 """
-WSGI config for news project.
+WSGI config for awwwards project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
