@@ -11,6 +11,7 @@ class User(AbstractUser):
     email = models.CharField(max_length=124, unique=True)
     avatar = CloudinaryField('image', null=True)
     bio = models.TextField(max_length=500, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'full_name']
 
