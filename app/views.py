@@ -109,6 +109,18 @@ def update_avatar(request):
         return redirect(request.META.get('HTTP_REFERER'), {'success': 'Profile updated successfully'})
 
 
+def search(request):
+    if 'q' in request.GET and request.GET["q"]:
+        search_term = request.GET.get("q")
+        searched_projects = Project.objects.filter(
+            title__icontains=search_term)
+        title = f"Search results For: {search_term}"
+
+        return render(request, "search.html", {"title": title, "projects": searched_projects})
+    else:
+        return render(request, "search.html", {"title": title})
+
+
 class ProjectsList(APIView):
     def get(self, request):
         projects = Project.get_all_projects()

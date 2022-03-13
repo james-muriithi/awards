@@ -16,11 +16,15 @@
         <div class="collapse navbar-collapse bg-transparent" id="navbarSupportedContent">
             <ul class="navbar-nav mt-4 mt-lg-0 text-white ms-auto">
                 <li class="nav-item ps-lg-4 pe-4 ps-2 mb-4 mb-lg-0 d-flex align-items-center">
+
                     <span class="position-relative search">
                         <span class="material-icons ps-1 text-primary position-absolute search-icon">search</span>
-                        <input type="text" class="border border-primary form-control rounded text-primary"
-                            placeholder="Search here..">
+                        <form action="{% url 'search' %}">
+                            <input type="text" name="q" class="border border-primary form-control rounded text-primary"
+                                placeholder="Search here.." value="{{request.GET.q}}">
+                        </form>
                     </span>
+
                 </li>
                 {% if not user.is_authenticated %}
                 <li class="nav-item px-2 pt-lg-1">
@@ -31,7 +35,8 @@
                 {% endif %}
                 <li class="nav-item">
                     <a class="text-white text-uppercase fw-light px-4 py-2  d-inline-flex center btn btn-secondary rounded-0"
-                        href="{% url 'login' %}" {% if user.is_authenticated %} data-bs-target="#exampleModal" data-bs-toggle="modal" {% endif %}>
+                        href="{% url 'login' %}" {% if user.is_authenticated %} data-bs-target="#exampleModal"
+                        data-bs-toggle="modal" {% endif %}>
                         Submit your site
                     </a>
                 </li>
