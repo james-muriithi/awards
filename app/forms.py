@@ -7,7 +7,12 @@ from .models import Project, User
 class MyCustomUserForm(RegistrationForm):
     class Meta:
         model = User
-        fields = ('username','email', 'full_name')
+        fields = ('username','email')
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('full_name', 'bio')
 
 
 class ProjectForm(forms.ModelForm):

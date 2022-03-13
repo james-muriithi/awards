@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from app.models import Project, User
-from app.forms import ProjectForm
+from app.forms import ProfileForm, ProjectForm
 from app.serializer import ProjectsSerializer, UserSerializer
 
 # Create your views here.
@@ -40,6 +40,17 @@ def single_project(request, slug):
 def profile(request):
     title = f'Profile {request.user.full_name}'
     return render(request, 'profile.html', {'title': title})
+
+
+@login_required()
+def update_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            request.user.full_name = form.data['full_name']
+            request.user.bio = form.data['bio']
+            request.user.save()
+        return redirect(request.META.get('HTTP_REFERER'), {'success': 'Profile updated successfully'})
 
 
 class ProjectsList(APIView):
