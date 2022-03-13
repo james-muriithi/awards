@@ -52,6 +52,18 @@ class Project(models.Model):
     def project_image(self):
         return self.image.build_url(format='webp')
 
+    @property
+    def avg_content_rate(self):
+        return self.ratings.aggregate(models.Avg('content_rate'))['content_rate__avg'] or 0
+
+    @property
+    def avg_usability_rate(self):
+        return self.ratings.aggregate(models.Avg('usability_rate'))['usability_rate__avg'] or 0
+
+    @property
+    def avg_design_rate(self):
+        return self.ratings.aggregate(models.Avg('design_rate'))['design_rate__avg'] or 0
+
     @classmethod
     def search_by_title(cls, search_term):
         projects = cls.objects.filter(title__icontains=search_term)
@@ -94,7 +106,7 @@ class Rating(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="ratings")
     project = models.ForeignKey(
-        Project, on_delete=models.CASCADE, related_name='project')
+        Project, on_delete=models.CASCADE, related_name='ratings')
     design_rate = models.IntegerField(default=0)
     usability_rate = models.IntegerField(default=0)
     content_rate = models.IntegerField(default=0)
@@ -109,7 +121,7 @@ class Rating(models.Model):
 
     @classmethod
     def filter_by_id(cls, id):
-        rating = Rating.objects.filter(id=id).first()
+        rating = cls.objects.filter(id=id).first()
         return rating
 
     def __str__(self):

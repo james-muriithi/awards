@@ -26,24 +26,25 @@
                     </div>
                 </div>
             </div>
+
             <div class="rating-group d-flex mt-4 text-center">
                 <div class="rating">
                     <div class="rating-circle border border-3 border-primary rounded-circle center mx-2">
-                        7.9
+                        {{project.avg_design_rate}}
                     </div>
                     Design
                 </div>
                 <div class="rating">
                     <div class="rating-circle border border-3 border-warning rounded-circle center mx-2">
-                        7.9
+                        {{project.avg_usability_rate}}
                     </div>
                     Usability
                 </div>
                 <div class="rating">
                     <div class="rating-circle border border-3 border-blue rounded-circle center mx-2">
-                        7.9
+                        {{project.avg_content_rate}}
                     </div>
-                    Creativity
+                    Content
                 </div>
             </div>
         </div>
@@ -55,104 +56,43 @@
                 </div>
                 <hr class="my-0">
                 <div class="votes">
+                    {% if project.ratings.count > 0 %}
+                    {% for vote in project.ratings.all %}
                     <div class="user-vote row border-bottom p-2 pe-3">
                         <div class="col d-flex align-items-center">
-                            <img src="https://ui-avatars.com/api/?name=James+Muriithi&background=49c5b6&color=fff"
-                                alt="" class="img-40 rounded-circle">
-                            <span class="ps-2">Jane Doe</span>
+                            <img src="{{vote.user.user_avatar}}" alt="" class="img-40 rounded-circle">
+                            <span class="ps-2">{{vote.user.full_name}}</span>
                         </div>
                         <div class="col  d-flex align-items-center">
                             <div class="rating-group d-none d-md-flex ms-auto ">
                                 <div class="rating">
                                     <div
                                         class="rating-circle img-50 border border-3 border-primary rounded-circle center mx-2">
-                                        7.9
+                                        {{vote.design_rate}}
                                     </div>
                                 </div>
                                 <div class="rating">
                                     <div
                                         class="rating-circle img-50 border border-3 border-warning rounded-circle center mx-2">
-                                        7.9
+                                        {{vote.usability_rate}}
                                     </div>
                                 </div>
                                 <div class="rating">
                                     <div
                                         class="rating-circle img-50 border border-3 border-blue rounded-circle center mx-2">
-                                        7.9
+                                        {{vote.content_rate}}
                                     </div>
                                 </div>
                             </div>
                             <div class="average-vote fs-3 ms-auto ms-md-3">
-                                9.2
+                                {{vote.avg_rate}}
                             </div>
                         </div>
                     </div>
-
-                    <div class="user-vote row border-bottom p-2 pe-3">
-                        <div class="col d-flex align-items-center">
-                            <img src="https://ui-avatars.com/api/?name=James+Muriithi&background=49c5b6&color=fff"
-                                alt="" class="img-40 rounded-circle">
-                            <span class="ps-2">Jane Doe</span>
-                        </div>
-                        <div class="col  d-flex align-items-center">
-                            <div class="rating-group d-none d-md-flex ms-auto ">
-                                <div class="rating">
-                                    <div
-                                        class="rating-circle img-50 border border-3 border-primary rounded-circle center mx-2">
-                                        7.9
-                                    </div>
-                                </div>
-                                <div class="rating">
-                                    <div
-                                        class="rating-circle img-50 border border-3 border-warning rounded-circle center mx-2">
-                                        7.9
-                                    </div>
-                                </div>
-                                <div class="rating">
-                                    <div
-                                        class="rating-circle img-50 border border-3 border-blue rounded-circle center mx-2">
-                                        7.9
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="average-vote fs-3 ms-auto ms-md-3">
-                                9.2
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="user-vote row border-bottom p-2 pe-3">
-                        <div class="col d-flex align-items-center">
-                            <img src="https://ui-avatars.com/api/?name=James+Muriithi&background=49c5b6&color=fff"
-                                alt="" class="img-40 rounded-circle">
-                            <span class="ps-2">Jane Doe</span>
-                        </div>
-                        <div class="col  d-flex align-items-center">
-                            <div class="rating-group d-none d-md-flex ms-auto ">
-                                <div class="rating">
-                                    <div
-                                        class="rating-circle img-50 border border-3 border-primary rounded-circle center mx-2">
-                                        7.9
-                                    </div>
-                                </div>
-                                <div class="rating">
-                                    <div
-                                        class="rating-circle img-50 border border-3 border-warning rounded-circle center mx-2">
-                                        7.9
-                                    </div>
-                                </div>
-                                <div class="rating">
-                                    <div
-                                        class="rating-circle img-50 border border-3 border-blue rounded-circle center mx-2">
-                                        7.9
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="average-vote fs-3 ms-auto ms-md-3">
-                                9.2
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <p class="mt-2 ms-2 text-muted">No user votes yet</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
