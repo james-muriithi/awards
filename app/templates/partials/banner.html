@@ -9,8 +9,9 @@
                     <span class="fw-bold">Site of the day</span> {% now "jS F Y" %}
                 </p>
                 <div>
-                    <button
-                        class="material-icons img-40 center rounded-circle border border-1 border-white">share</button>
+                    <button data-url="{{ banner_project.url }}" data-bs-toggle="tooltip" tabindex="0"
+                        data-bs-placement="top" title="Copy project url"
+                        class="material-icons img-40 center rounded-circle border border-1 border-white share">share</button>
                 </div>
             </div>
             <div class="col text-center">
@@ -42,7 +43,8 @@
             </div>
             <div class="col position-relative mb-3">
                 <div class="position-absolute bottom-0">
-                    <a href="{% url 'single_project' slug=banner_project.slug %}" class="btn btn-outline-light rounded-pill text-uppercase text-xs center px-3">
+                    <a href="{% url 'single_project' slug=banner_project.slug %}"
+                        class="btn btn-outline-light rounded-pill text-uppercase text-xs center px-3">
                         Visit site
                     </a>
                 </div>
