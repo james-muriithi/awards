@@ -63,8 +63,10 @@ python3.8 manage.py runserver
 
 ## Screenshot
 ![Screnshot](./screenshots/screenshot.png)
+![Screnshot](./screenshots/screenshot2.png)
+![Screnshot](./screenshots/screenshot3.png)
 ## Live link
-[Here is the link to the live site]()
+[Here is the link to the live site](https://project-awwards.herokuapp.com/)
 ## Contact details
 Email: james@student.moringaschool.com
 
