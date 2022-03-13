@@ -101,6 +101,9 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ['-date']
+
 
 # rating models
 class Rating(models.Model):

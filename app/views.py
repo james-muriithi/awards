@@ -35,12 +35,10 @@ def upload(request):
 
 # delete project
 @login_required()
-def delete_project(request, id):
-    project = Project.objects.get(id=id)
+def delete_project(request, project_id):
+    project = Project.objects.get(id=project_id)
     project.delete_project()
     return redirect("/profile", {"success": "Project Deleted Successfully"})
-
-# rate_project
 
 
 @login_required(login_url="/accounts/login/")
