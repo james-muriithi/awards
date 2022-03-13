@@ -1,13 +1,14 @@
 {% load static %}
 <div class="project-card">
     <div class="position-relative project-image">
-        <img src="{% static '/images/bg.png' %}" alt="" class="img-fluid image w-100">
+        <img src="{{project.thumbnail}}" alt="" class="img-fluid image w-100">
         <div class="position-absolute top-0 h-100 w-100 overlay flex-column">
             <div class="col"></div>
             <div class="col center">
-                <button class="btn btn-light rounded-pill text-uppercase text-xs center px-3">
+                <a href="{{project.url}}" target="_blank"
+                    class="btn btn-light rounded-pill text-uppercase text-xs center px-3">
                     Visit site
-                </button>
+                </a>
             </div>
             <div class="col d-flex justify-content-end align-items-end pe-2 pb-2">
                 <button class="btn btn-sm text-light rounded-circle center d-flex img-30">
@@ -18,18 +19,17 @@
     </div>
     <div class="details  p-3">
         <p class="text-muted mb-1 text-sm">
-            From Russia . <span class="ps-3">March 11,2022</span>
+            From {{project.location}} . <span class="ps-2">{{project.date | date}}</span>
         </p>
-        <a href="/" class="">
+        <a href="{% url 'single_project' slug=project.slug %}" class="">
             <h6 class="fw-bold">
-                Charaf Eddine Craft - CECRAFT
+                {{project.title | truncatechars:30}}
             </h6>
         </a>
         <div class="d-flex align-items-center">
-            <img src="https://ui-avatars.com/api/?name=James+Muriithi&background=49c5b6&color=fff" height="30"
-                width="30" alt="" class="avatar rounded-circle">
+            <img src="{{project.user.user_avatar}}" height="30" width="30" alt="" class="avatar rounded-circle">
             <div class="ps-3">
-                <span class="text-muted mb-1 text-uppercase text-xs">By Jane Doe</span>
+                <span class="text-muted mb-1 text-uppercase text-xs">By {{project.user.full_name}}</span>
             </div>
         </div>
     </div>
