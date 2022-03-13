@@ -54,7 +54,7 @@ def delete_project(request, project_id):
     return redirect("/profile", {"success": "Project Deleted Successfully"})
 
 
-@login_required(login_url="/accounts/login/")
+@login_required()
 def rate_project(request, id):
     if request.method == "POST":
 
@@ -73,13 +73,14 @@ def rate_project(request, id):
             content_rate=content_rate,
         )
 
-        return redirect("profile", {"success": "Project Rated Successfully"})
+        return redirect("/profile", {"success": "Project Rated Successfully"})
 
 
 @login_required()
 def single_project(request, slug):
     project = Project.get_project_by_slug(slug)
-    return render(request, 'single-project.html', {'project': project})
+    user_voted = project.user_voted(request.user.id)
+    return render(request, 'single-project.html', {'project': project, 'user_voted': user_voted})
 
 
 @login_required()

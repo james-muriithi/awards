@@ -98,6 +98,9 @@ class Project(models.Model):
     def delete_project(self):
         self.delete()
 
+    def user_voted(self, user_id):
+        return self.ratings.filter(user_id=user_id).count() > 0
+
     def __str__(self):
         return self.title
 
@@ -130,3 +133,6 @@ class Rating(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    class Meta:
+        ordering = ['-date']
