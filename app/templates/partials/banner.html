@@ -2,47 +2,49 @@
 <!-- banner -->
 <section id="home" class="h-100">
     <div class="h-100 position-relative">
-        <img src="{% static '/images/bg.png' %}" alt="" class="h-100 w-100" style="object-fit: cover;">
+        <img src="{{ banner_project.project_image }}" alt="" class="h-100 w-100" style="object-fit: cover;">
         <div class="position-absolute container-fluid py-3 h-100 w-100 overlay d-flex flex-column text-gray">
             <div class="col d-flex justify-content-between">
                 <p>
-                    <span class="fw-bold">Site of the day</span> March 11, 2022
+                    <span class="fw-bold">Site of the day</span> {% now "jS F Y" %}
                 </p>
                 <div>
-                    <span class="material-icons img-40 center rounded-circle border border-1 border-white">share</span>
+                    <button
+                        class="material-icons img-40 center rounded-circle border border-1 border-white">share</button>
                 </div>
             </div>
             <div class="col text-center">
-                <h1 class="title">The Nifty Portal</h1>
+                <h1 class="title">{{banner_project.title|truncatechars:25}}</h1>
                 <p class="p">
-                    By <a href="#">Vaan</a> from unitted states with 7.0
+                    By <a href="#">{{banner_project.user.full_name}}</a> from {{banner_project.location}} with
+                    {{banner_project.avg_rate}}
                 </p>
                 <div class="rating-group center mt-4">
                     <div class="rating">
                         <div class="rating-circle border border-3 border-primary rounded-circle center mx-2">
-                            7.9
+                            {{banner_project.avg_design_rate}}
                         </div>
                         Design
                     </div>
                     <div class="rating">
                         <div class="rating-circle border border-3 border-warning rounded-circle center mx-2">
-                            7.9
+                            {{banner_project.avg_usability_rate}}
                         </div>
                         Usability
                     </div>
                     <div class="rating">
                         <div class="rating-circle border border-3 border-blue rounded-circle center mx-2">
-                            7.9
+                            {{banner_project.avg_content_rate}}
                         </div>
-                        Creativity
+                        Content
                     </div>
                 </div>
             </div>
             <div class="col position-relative mb-3">
                 <div class="position-absolute bottom-0">
-                    <button class="btn btn-outline-light rounded-pill text-uppercase text-xs center px-3">
+                    <a href="{% url 'single_project' slug=banner_project.slug %}" class="btn btn-outline-light rounded-pill text-uppercase text-xs center px-3">
                         Visit site
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

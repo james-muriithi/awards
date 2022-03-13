@@ -54,6 +54,10 @@ class Project(models.Model):
         return self.image.build_url(format='webp')
 
     @property
+    def avg_rate(self):
+        return (float(self.avg_content_rate) + float(self.avg_design_rate) + float(self.avg_usability_rate)) / 3
+
+    @property
     def avg_content_rate(self):
         return "{:.1f}".format(self.ratings.aggregate(models.Avg('content_rate'))['content_rate__avg'] or 0)
 

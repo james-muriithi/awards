@@ -15,7 +15,8 @@ from app.serializer import ProjectsSerializer, UserSerializer
 
 def index(request):
     projects = Project.get_all_projects()
-    return render(request, 'index.html', {'projects': projects})
+    project_of_the_day = projects.last
+    return render(request, 'index.html', {'projects': projects, 'banner_project': project_of_the_day})
 
 
 @login_required()
