@@ -31,7 +31,7 @@
                 {% endif %}
                 <li class="nav-item">
                     <a class="text-white text-uppercase fw-light px-4 py-2  d-inline-flex center btn btn-secondary rounded-0"
-                        href="#" {% if user.is_authenticated %} data-bs-target="#exampleModal" data-bs-toggle="modal" {% endif %}>
+                        href="{% url 'login' %}" {% if user.is_authenticated %} data-bs-target="#exampleModal" data-bs-toggle="modal" {% endif %}>
                         Submit your site
                     </a>
                 </li>

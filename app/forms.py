@@ -19,3 +19,9 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ('title', 'description', 'image', 'url', 'location')
+
+
+class UpdateProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ('title', 'description', 'url', 'location')

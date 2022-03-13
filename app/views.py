@@ -7,7 +7,7 @@ import cloudinary.uploader
 import cloudinary.api
 
 from app.models import Project, Rating, User
-from app.forms import ProfileForm, ProjectForm
+from app.forms import ProfileForm, ProjectForm, UpdateProjectForm
 from app.serializer import ProjectsSerializer, UserSerializer
 
 # Create your views here.
@@ -30,7 +30,20 @@ def upload(request):
 
             return redirect(request.META.get('HTTP_REFERER'), {'success': 'Project Uploaded Successfully'})
 
-    return redirect(request.META.get('HTTP_REFERER'), {'error': 'Project Uploaded Successfully'})
+    return redirect(request.META.get('HTTP_REFERER'), {'error': 'There was an error uploading'})
+
+
+@login_required()
+def update_project(request, project_id):
+    if request.method == 'POST':
+        project = Project.objects.get(id=project_id)
+        form = UpdateProjectForm(request.POST, instance=project)
+
+        if form.is_valid():
+            form.save()
+            return redirect(request.META.get('HTTP_REFERER'), {'success': 'Project updated Successfully'})
+
+    return redirect(request.META.get('HTTP_REFERER'), {'error': 'There was an error updating'})
 
 
 # delete project

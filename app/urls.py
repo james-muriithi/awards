@@ -6,6 +6,7 @@ urlpatterns = [
     path('upload', views.upload, name='upload'),
     path('project/<slug>', views.single_project, name="single_project"),
     path('project/<project_id>/delete', views.delete_project, name="project_delete"),
+    path('project/<project_id>/update', views.update_project, name="update_project"),
     path('profile', views.profile, name="profile"),
     path('update_profile', views.update_profile, name="update_profile"),
     path('update_avatar', views.update_avatar, name="update_avatar"),
