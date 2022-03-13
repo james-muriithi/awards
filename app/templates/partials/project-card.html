@@ -2,7 +2,7 @@
 <div class="project-card">
     <div class="position-relative project-image">
         <img src="{{project.thumbnail}}" alt="" class="img-fluid image w-100">
-        <div class="position-absolute top-0 h-100 w-100 overlay flex-column">
+        <div data-url="{% url 'single_project' slug=project.slug %}" class="position-absolute top-0 h-100 w-100 overlay flex-column">
             <div class="col"></div>
             <div class="col center">
                 <a href="{{project.url}}" target="_blank"
@@ -11,10 +11,10 @@
                 </a>
             </div>
             <div class="col d-flex justify-content-end align-items-end pe-2 pb-2">
-                <button class="btn btn-sm text-light rounded-circle center d-flex img-30 share"
+                <button class="btn btn-sm text-light rounded-circle center d-flex img-30 share not-link"
                     data-url="{{ project.url }}" data-bs-toggle="tooltip" tabindex="0" data-bs-placement="top"
                     title="Copy project url">
-                    <span class="material-icons fs-6">share</span>
+                    <span class="material-icons fs-6 not-link">share</span>
                 </button>
             </div>
         </div>

@@ -8,6 +8,7 @@
                 <img src="{{project.project_image}}" alt="" class="img-fluid w-100">
             </div>
             <div class="bg-white pb-4">
+                {% if project.user.id != user.id %}
                 <button {% if user_voted %} disabled {% endif %}
                     class="w-100 btn btn-primary rounded-0 text-white py-3 text-uppercase" data-bs-toggle="modal"
                     data-bs-target="#voteModal">
@@ -17,6 +18,7 @@
                     Submit Vote
                     {% endif %}
                 </button>
+                {% endif %}
                 <div class="px-2">
                     <h5 class="fw-bold pt-5">
                         {{project.title}}

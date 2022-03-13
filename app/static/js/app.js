@@ -6,7 +6,7 @@ $(function () {
         "extendedTimeOut": "1000", "showEasing": "swing", "hideEasing": "linear",
         "showMethod": "fadeIn", "hideMethod": "fadeOut"
     };
-    
+
     $('#imageUpload').on('change', function () {
         $(this).closest('form').trigger('submit')
     });
@@ -30,6 +30,12 @@ $(function () {
             navigator.clipboard.writeText(url);
             showCopiedTooltip($(this))
         }
+    });
+
+    $('.project-card .overlay').on('click', function (e) {
+        if ($(e.target).hasClass('not-link')) return;
+        const url = $(this).data('url');
+        window.location.href = url
     })
 })
 

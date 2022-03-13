@@ -27,7 +27,7 @@ def upload(request):
         if form.is_valid():
             project = form.save(commit=False)
             project.user = request.user
-            project.save()
+            project.save_project()
 
             return redirect(request.META.get('HTTP_REFERER'), {'success': 'Project Uploaded Successfully'})
 
@@ -74,7 +74,7 @@ def rate_project(request, id):
             content_rate=content_rate,
         )
 
-        return redirect("/profile", {"success": "Project Rated Successfully"})
+        return redirect(request.META.get('HTTP_REFERER'), {'success': 'Project rated Successfully'})
 
 
 @login_required()
