@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<section id="body" class="pt-5 mb-5">
+    <div class="container-xl pt-4">
+        <div class="pitches row mt-5 mx-0 justify-content-center">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <div
+                                class="position-relative profile-user-pic rounded-circle border d-flex align-items-center justify-content-center">
+                                <form action="" method="post" id="form-image" enctype="multipart/form-data">
+                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" class="d-none" />
+                                    <label for="imageUpload" class="position-absolute bottom-0 end-0">
+                                        <span class="material-icons text-primary">
+                                            camera_alt
+                                        </span>
+                                    </label>
+                                    <span class="d-block h-100 w-100">
+                                        <span class="material-icons text-primary user-icon">person</span>
+                                    </span>
+                                </form>
+
+                            </div>
+                            <div class="mt-3">
+                                <h4>{{user.full_name}}</h4>
+                                <p class="text-muted font-size-sm">@{{user.username}}</p>
+                                <p class="text-muted font-size-sm">Joined on: {{user.created_at|date}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body p-4">
+                        <form action="" class="">
+                            <div class="form-group">
+                                <label for="" class="form-label text-sm">Email</label>
+                                <input type="text" class="form-control" placeholder="john@doe.com"
+                                    value="{{user.email}}" name="email" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="form-label text-sm">Username</label>
+                                <input type="text" class="form-control" placeholder="username" value="{{user.username}}"
+                                    name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="form-label text-sm">Full Name</label>
+                                <input type="text" class="form-control" placeholder="john doe"
+                                    value="{{user.full_name}}" name="full_name" required>
+                            </div>
+                            <div class="form-group pt-2">
+                                <label for="" class="form-label text-sm">About Me</label>
+                                <textarea name="bio" class="form-control" rows="3">{% if user.bio %}{{user.bio}}{% endif %}</textarea>
+                            </div>
+
+                            <div class="text-center pt-5">
+                                <button class="btn btn-primary px-4 text-white">
+                                    Update
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row gutters-sm">
+                    <div class="col-sm-12 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h2 class="fw-bold fs-3 text-center text-secondary">Your Projects</h2>
+                                <div class="table-responsive">
+                                    <table class="table table-responsive table-hover mt-3">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Location</th>
+                                                <th scope="col">URL</th>
+                                                <th scope="col">Votes</th>
+                                                <th scope="col">Created At</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="7" class="text-center">
+                                                    No projects yet
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

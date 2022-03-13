@@ -8,6 +8,8 @@ from app.forms import ProjectForm
 from app.serializer import ProjectsSerializer, UserSerializer
 
 # Create your views here.
+
+
 def index(request):
     projects = Project.get_all_projects()
     return render(request, 'index.html', {'projects': projects})
@@ -27,11 +29,17 @@ def upload(request):
 
     return redirect(request.META.get('HTTP_REFERER'), {'error': 'Project Uploaded Successfully'})
 
+
 @login_required()
 def single_project(request, slug):
     project = Project.get_project_by_slug(slug)
     return render(request, 'single-project.html', {'project': project})
 
+
+@login_required()
+def profile(request):
+    title = f'Profile {request.user.full_name}'
+    return render(request, 'profile.html', {'title': title})
 
 
 class ProjectsList(APIView):

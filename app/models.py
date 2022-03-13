@@ -54,15 +54,15 @@ class Project(models.Model):
 
     @property
     def avg_content_rate(self):
-        return self.ratings.aggregate(models.Avg('content_rate'))['content_rate__avg'] or 0
+        return "{:.1f}".format(self.ratings.aggregate(models.Avg('content_rate'))['content_rate__avg'] or 0)
 
     @property
     def avg_usability_rate(self):
-        return self.ratings.aggregate(models.Avg('usability_rate'))['usability_rate__avg'] or 0
+        return "{:.1f}".format(self.ratings.aggregate(models.Avg('usability_rate'))['usability_rate__avg'] or 0)
 
     @property
     def avg_design_rate(self):
-        return self.ratings.aggregate(models.Avg('design_rate'))['design_rate__avg'] or 0
+        return "{:.1f}".format(self.ratings.aggregate(models.Avg('design_rate'))['design_rate__avg'] or 0)
 
     @classmethod
     def search_by_title(cls, search_term):
@@ -114,7 +114,7 @@ class Rating(models.Model):
 
     @property
     def avg_rate(self):
-        return (self.design_rate + self.usability_rate + self.content_rate) / 3
+        return "{:.1f}".format((self.design_rate + self.usability_rate + self.content_rate) / 3)
 
     def save_rating(self):
         self.save()
