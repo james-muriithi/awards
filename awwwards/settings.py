@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from email.policy import default
 from pathlib import Path
 from decouple import config
 import dj_database_url
@@ -33,7 +34,7 @@ ENV = config('ENV', default='development')
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5w&pz*u(hi(u(o(all%yv)2upn20v)aw2900jd2$dw1m*&(azu'
+SECRET_KEY = config('SECRET_KEY', default='secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True)
@@ -63,7 +64,8 @@ INSTALLED_APPS = [
     'django_registration',
     'cloudinary',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'django.contrib.humanize'
 ]
 
 MIDDLEWARE = [
@@ -190,6 +192,13 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100
 }
+
+# Email config
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.googlemail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = config('MAIL_USERNAME', default='')
+EMAIL_HOST_PASSWORD = config('MAIL_PASSWORD', default='')
 
 
 # Activate Django-Heroku.
