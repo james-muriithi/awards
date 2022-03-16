@@ -5,9 +5,9 @@ from .models import Project, User
 
 
 class MyCustomUserForm(RegistrationForm):
-    class Meta:
+    class Meta(RegistrationForm.Meta):
         model = User
-        fields = ('username','email')
+        fields = ('username','email', 'full_name')
 
 class ProfileForm(forms.ModelForm):
     class Meta:
