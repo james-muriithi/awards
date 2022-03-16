@@ -37,7 +37,7 @@ ENV = config('ENV', default='development')
 SECRET_KEY = config('SECRET_KEY', default='secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True)
+DEBUG = True if ENV == 'development' else False
 
 ALLOWED_HOSTS = ['*']
 
@@ -174,7 +174,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CSRF
-CSRF_COOKIE_SECURE = False if ENV == 'development' else True
+CSRF_COOKIE_SECURE = False
 
 
 # setup cloudinary credentials for django-cloudinary
